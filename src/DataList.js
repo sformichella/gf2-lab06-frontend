@@ -1,6 +1,6 @@
-import React, { Component } from 'react'
+import React, { Component } from 'react';
 import request from 'superagent';
-import DataFrame from './DataFrame.js'
+import DataFrame from './DataFrame.js';
 
 export default class DataList extends Component {
 
