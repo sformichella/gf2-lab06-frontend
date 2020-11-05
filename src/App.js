@@ -5,6 +5,7 @@ import {
   Switch
 } from 'react-router-dom';
 import DataList from './DataList.js';
+import CreatePage from './CreatePage.js';
 
 function App() {
   return (
@@ -15,6 +16,11 @@ function App() {
               path="/"
               exact
               render = {(routerProps) => <DataList {...routerProps}/>}
+            />
+            <Route 
+              path="/create"
+              exact
+              render = {(routerProps) => <CreatePage {...routerProps}/>}
             />
           </Switch>
         </Router>
