@@ -46,3 +46,24 @@
 .theorem-list * {
   margin: 10px;
 }
+
+.flex-col {
+  display: flex;
+  flex-direction: column;
+}
+
+.form {
+  padding: 10px;
+}
+
+.form label {
+  margin: 10px;
+}
+
+.form label span {
+  margin-right: 10px;
+}
+
+.form button {
+  width: 100px;
+}
