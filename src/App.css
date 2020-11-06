@@ -37,6 +37,11 @@
   }
 }
 
+.flex-col {
+  display: flex;
+  flex-direction: column;
+}
+
 .theorem-list {
   display: flex;
   flex-direction: row;
@@ -45,11 +50,6 @@
 
 .theorem-list * {
   margin: 10px;
-}
-
-.flex-col {
-  display: flex;
-  flex-direction: column;
 }
 
 .form {
@@ -66,4 +66,8 @@
 
 .form button {
   width: 100px;
+}
+
+.data-frame {
+  border: solid 1px red;
 }
