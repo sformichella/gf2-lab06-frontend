@@ -9,7 +9,8 @@ export default class UpdatePage extends Component {
             name: '',
             difficulty: 0,
             veracity: '',
-            field: ''
+            field: '',
+            owner_id: 1
         },
         fields: []
     }
@@ -34,15 +35,23 @@ export default class UpdatePage extends Component {
         })
     }
 
-    handleSubmit = e => {
+    handleSubmit = async (e) => {
         e.preventDefault();
+
+        const fieldArray = this.state.fields.map(field => field.name);
+        const theorem = this.state.theorem;
+        theorem.field_id = fieldArray.indexOf(theorem.field) + 1;
+        theorem.owner_id = 1
+
+        await request.put(`https://limitless-lowlands-57794.herokuapp.com/theorems/${this.props.match.params.id}`)
+            .send(theorem);
+
+        this.props.history.push('/theorems')
 
         console.log(this.state.theorem);
     }
 
     render() {
-
-        console.log(this.state.fields);
 
         return (
             <div className="update-frame flex-col">
