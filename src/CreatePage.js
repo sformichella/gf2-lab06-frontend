@@ -38,7 +38,7 @@ export default class CreatePage extends Component {
             .post(`https://limitless-lowlands-57794.herokuapp.com/theorems`)
             .send(newTheorem)
 
-        this.props.history.push('/')
+        this.props.history.push('/theorems')
     }
 
     handleInputChange = (input, e) => {
