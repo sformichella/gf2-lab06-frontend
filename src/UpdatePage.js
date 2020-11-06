@@ -51,6 +51,12 @@ export default class UpdatePage extends Component {
         console.log(this.state.theorem);
     }
 
+    handleDelete = async () => {
+        await request.delete(`https://limitless-lowlands-57794.herokuapp.com/theorems/${this.props.match.params.id}`);
+
+        this.props.history.push('/theorems')
+    }
+
     render() {
 
         return (
@@ -109,6 +115,7 @@ export default class UpdatePage extends Component {
                     </div>
                     <button>Submit</button>
                 </form>
+                <button onClick={this.handleDelete}>Delete Theorem</button>
             </div>
         )
     }
