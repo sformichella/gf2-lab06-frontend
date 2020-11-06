@@ -1,5 +1,10 @@
 import React, { Component } from 'react';
-import request from 'superagent';
+import {
+    deleteTheorem,
+    getFields,
+    getTheorem,
+    updateTheorem
+} from './utils.js'
 
 export default class UpdatePage extends Component {
 
@@ -16,13 +21,13 @@ export default class UpdatePage extends Component {
     }
 
     componentDidMount = async () => {
-        const theorem = await request.get(`https://limitless-lowlands-57794.herokuapp.com/theorems/${this.props.match.params.id}`)
+        const theorem = await getTheorem(this.props.match.params.id);
 
-        const fields = await request.get(`https://limitless-lowlands-57794.herokuapp.com/fields`);
+        const fields = await getFields();
 
         this.setState({
-            theorem: JSON.parse(theorem.text),
-            fields: JSON.parse(fields.text)
+            theorem,
+            fields
         })
     }
 
@@ -38,21 +43,23 @@ export default class UpdatePage extends Component {
     handleSubmit = async (e) => {
         e.preventDefault();
 
-        const fieldArray = this.state.fields.map(field => field.name);
+        // Grab theorem data
         const theorem = this.state.theorem;
+        // Make an array out of the fields data.
+        // This is used to get the field_id number for 
+        // the put request
+        const fieldArray = this.state.fields.map(field => field.name);
         theorem.field_id = fieldArray.indexOf(theorem.field) + 1;
+        // Set the owner_id prop since the request needs it
         theorem.owner_id = 1
 
-        await request.put(`https://limitless-lowlands-57794.herokuapp.com/theorems/${this.props.match.params.id}`)
-            .send(theorem);
+        await updateTheorem(this.props.match.params.id, theorem);
 
         this.props.history.push('/theorems')
-
-        console.log(this.state.theorem);
     }
 
     handleDelete = async () => {
-        await request.delete(`https://limitless-lowlands-57794.herokuapp.com/theorems/${this.props.match.params.id}`);
+        await deleteTheorem(this.props.match.params.id);
 
         this.props.history.push('/theorems')
     }

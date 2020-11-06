@@ -1,7 +1,7 @@
 import React, { Component } from 'react';
-import request from 'superagent';
 import DataFrame from './DataFrame.js';
 import {Link} from 'react-router-dom';
+import {getTheorems} from './utils.js';
 
 export default class DataList extends Component {
 
@@ -10,10 +10,10 @@ export default class DataList extends Component {
     }
 
     componentDidMount = async () => {
-        const data = await request.get(`https://limitless-lowlands-57794.herokuapp.com/theorems`);
+        const data = await getTheorems();
 
         this.setState({
-            data: JSON.parse(data.text)
+            data
         })
     }
 
